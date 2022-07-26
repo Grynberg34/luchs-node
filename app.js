@@ -12,6 +12,8 @@ const cadastroRouter = require('./routes/cadastro');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 const userRouter = require('./routes/user');
+const cors = require('cors');
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 const app = express();
 
@@ -20,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(cors());
 
 
 // Passport
@@ -86,8 +88,8 @@ app.use((req, res) => {
   })
 });
 
-// Listen to port 3000
-var port = process.env.PORT || 3000;
+// Listen to port 8080
+var port = process.env.PORT || 8080;
 app.listen(port, function () {
     console.log('Listening on port', port);
 });

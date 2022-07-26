@@ -2,49 +2,63 @@ const Texto = require('../models/Texto');
 
 module.exports = {
     mostrarTextos: async function(req,res) {
-        var textos = await Texto.findAll();
+        var textos = await Texto.findAll({
+            order: [['data', 'DESC']]
+        });
 
-        return res.status(400).json(textos);
+        return res.status(200).json(textos);
+    },
+    mostrarTextoPorId: async function(req,res) {
+        var id = req.params.id;
+
+        var texto = await Texto.findByPk(id);
+
+        return res.status(200).json(texto);
     },
     criarTexto: async function(req,res) {
-        var autor = req.body.autor;
+        var autora = req.body.autora;
         var titulo = req.body.titulo;
         var data = req.body.data;
         var categoria = req.body.categoria;
         var texto = req.body.texto;
+        
+        if (autora == undefined || titulo == undefined || data == undefined || texto == undefined) {
+            return res.status(400).json('Preencha todos os campos.');
+        }
 
         await Texto.create({
-            autor: autor,
+            autora: autora,
             titulo: titulo,
             data: data,
             categoria: categoria,
             texto: texto
         });
 
-        return res.status(400).json('Texto criado.');
+        return res.status(200).json('Texto criado.');
     },
     editarTexto: async function(req,res) {
-        var autor = req.body.autor;
+        var autora = req.body.autora;
         var titulo = req.body.titulo;
         var data = req.body.data;
-        var categoria = req.body.categoria;
         var texto = req.body.texto;
-        var id = req.body.id;
+        var id = req.params.id;
 
         await Texto.update({
-            autor: autor,
+            autora: autora,
             titulo: titulo,
             data: data,
-            categoria: categoria,
             texto: texto
         },{ where: { id: id } });
 
-        return res.status(400).json('Texto criado.');
+        return res.status(200).json('Texto editado.');
     },
     deletarTexto: async function(req,res) {
         var id = req.body.id;
 
         Texto.destroy({where: { id:id }});
+
+        return res.status(200).json('Texto deletado.');
+
     }
 
 }
