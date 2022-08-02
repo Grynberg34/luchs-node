@@ -12,6 +12,8 @@ const cadastroRouter = require('./routes/cadastro');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
 const userRouter = require('./routes/user');
+const homeRouter = require('./routes/home');
+
 const cors = require('cors');
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
@@ -58,7 +60,7 @@ app.use('/cadastro', cadastroRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/user', userRouter);
-
+app.use('/home', homeRouter);
 
 // Error handling
 app.use((err, req, res, next) => {
