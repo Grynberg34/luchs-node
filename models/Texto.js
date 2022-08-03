@@ -26,6 +26,12 @@ const Texto = connection.define('Texto', {
     texto: {
       type: DataTypes.TEXT('long')
     },
+    titulo: { 
+      type: DataTypes.STRING,
+    },
+    numero: { 
+      type: DataTypes.STRING,
+    },
 },{
   tableName: 'textos'
 });

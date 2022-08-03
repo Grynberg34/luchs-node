@@ -26,12 +26,28 @@ module.exports = {
             return res.status(400).json('Preencha todos os campos.');
         }
 
+        var textos = await Texto.findAll({
+            where: {
+                categoria: categoria
+            }
+        })
+
+        var numero = 0;
+
+        numero = numero + textos.length + 1;
+
+        
+        if (numero < 10) {
+            numero = '0' + numero.toString();
+        }
+
         await Texto.create({
             autora: autora,
             titulo: titulo,
             data: data,
             categoria: categoria,
-            texto: texto
+            texto: texto,
+            numero: numero
         });
 
         return res.status(200).json('Texto criado.');
