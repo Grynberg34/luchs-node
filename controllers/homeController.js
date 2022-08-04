@@ -10,4 +10,13 @@ module.exports = {
 
         return res.status(200).json(texto);
     },
+    mostrarTextosEmpresarias: async function (req,res) {
+        var textos = await Texto.findAll({where: {
+            categoria: 'Para empresárias'
+        }, 
+        order: [ [ 'id', 'DESC' ]],
+        });
+
+        return res.status(200).json(textos);
+    }
 }
