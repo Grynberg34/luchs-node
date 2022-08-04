@@ -6,4 +6,6 @@ router.get('/banner', homeController.mostrarUltimoTexto);
 
 router.get('/empresarias', homeController.mostrarTextosEmpresarias);
 
+router.get('/marketeiras', homeController.mostrarTextosMarketeiras);
+
 module.exports = router;

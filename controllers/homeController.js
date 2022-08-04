@@ -6,8 +6,6 @@ module.exports = {
             order: [ [ 'id', 'DESC' ]],
         });
 
-        console.log(texto)
-
         return res.status(200).json(texto);
     },
     mostrarTextosEmpresarias: async function (req,res) {
@@ -17,6 +15,24 @@ module.exports = {
         order: [ [ 'id', 'DESC' ]],
         });
 
+        for (var i=0; i < textos.length; i++) {
+            textos[i].texto = textos[i].texto.substring(0,100) + '...'
+        }
+        
+        return res.status(200).json(textos);
+    },
+    mostrarTextosMarketeiras: async function (req,res) {
+        var textos = await Texto.findAll({where: {
+            categoria: 'Para marketeiras'
+        }, 
+        order: [ [ 'id', 'DESC' ]],
+        });
+
+        for (var i=0; i < textos.length; i++) {
+            textos[i].texto = textos[i].texto.substring(0,100) + '...'
+        }
+        
         return res.status(200).json(textos);
     }
+
 }
