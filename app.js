@@ -6,6 +6,8 @@ require('dotenv').config();
 const User = require('./models/User');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
+const cors = require('cors');
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 const indexRouter = require('./routes/index');
 const cadastroRouter = require('./routes/cadastro');
@@ -14,8 +16,6 @@ const logoutRouter = require('./routes/logout');
 const userRouter = require('./routes/user');
 const homeRouter = require('./routes/home');
 
-const cors = require('cors');
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 const app = express();
 
