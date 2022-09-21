@@ -33,6 +33,13 @@ module.exports = {
         }
         
         return res.status(200).json(textos);
-    }
+    },
+    mostrarTextoPorId: async function(req,res) {
+        var id = req.params.id;
+
+        var texto = await Texto.findByPk(id);
+
+        return res.status(200).json(texto);
+    },
 
 }

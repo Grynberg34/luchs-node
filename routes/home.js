@@ -8,4 +8,6 @@ router.get('/empresarias', homeController.mostrarTextosEmpresarias);
 
 router.get('/marketeiras', homeController.mostrarTextosMarketeiras);
 
+router.get('/texto', homeController.mostrarTextoPorId);
+
 module.exports = router;
