@@ -1,12 +1,14 @@
 const Texto = require('../models/Texto');
 
 module.exports = {
-    mostrarUltimoTexto: async function(req,res) {
-        var texto = await Texto.findOne({
+    mostrarUltimosTextos: async function(req,res) {
+        var textos = await Texto.findAll({
             order: [ [ 'id', 'DESC' ]],
         });
 
-        return res.status(200).json(texto);
+        var ultimos_textos = [textos[0], textos[1], textos[2], textos[3]];
+
+        return res.status(200).json(ultimos_textos);
     },
     mostrarTextosEmpresarias: async function (req,res) {
         var textos = await Texto.findAll({where: {
