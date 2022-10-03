@@ -16,6 +16,7 @@ module.exports = {
         }, 
         order: [ [ 'id', 'DESC' ]],
         });
+        
 
         for (var i=0; i < textos.length; i++) {
             textos[i].texto = textos[i].texto.substring(0,100) + '...'
