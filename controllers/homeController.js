@@ -8,6 +8,7 @@ module.exports = {
 
         var ultimos_textos = [textos[0], textos[1], textos[2], textos[3]];
 
+        
         return res.status(200).json(ultimos_textos);
     },
     mostrarTextosEmpresarias: async function (req,res) {
